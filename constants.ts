@@ -14,41 +14,41 @@ export const DRONE_CATEGORIES: Category[] = [
     id: 'fpv',
     title: '穿越机 FPV',
     subtitle: '极致速度与精准操控的完美结合',
-    image: 'https://picsum.photos/800/600?random=1',
+    image: '/images/cat_fpv.jpg',
     items: [
       { 
         id: '5-inch-fpv', 
         name: '5寸 FPV 竞速版', 
         description: '专为竞赛设计的黄金尺寸，兼顾灵活性与动力。',
-        image: 'https://picsum.photos/600/400?random=10',
+        image: '/images/prod_fpv_5inch.jpg',
         specs: ['轴距: 225mm', '续航: 5-8min', '最高时速: 180km/h']
       },
       { 
         id: '7-inch-fpv', 
         name: '7寸 FPV 远航版', 
         description: '长距离巡航的首选，稳定的飞行姿态。',
-        image: 'https://picsum.photos/600/400?random=11',
+        image: '/images/prod_fpv_7inch.jpg',
         specs: ['轴距: 300mm', '续航: 15-20min', '载重: 1.5kg']
       },
       { 
         id: '11-inch-fpv', 
         name: '11寸 FPV 电影机', 
         description: '专业影视航拍，搭载大型摄影机。',
-        image: 'https://picsum.photos/600/400?random=12',
+        image: '/images/prod_fpv_11inch.jpg',
         specs: ['轴距: 500mm', '续航: 12min', '载重: 2.5kg']
       },
       { 
         id: '13-inch-fpv', 
         name: '13寸 FPV 重载机', 
         description: '工业级重载穿越机，适应极端环境。',
-        image: 'https://picsum.photos/600/400?random=13',
+        image: '/images/prod_fpv_13inch.jpg',
         specs: ['轴距: 650mm', '续航: 15min', '载重: 4kg']
       },
       { 
         id: '15-inch-fpv', 
         name: '15寸 FPV 巨兽', 
         description: '超大载重，极限物流运输解决方案。',
-        image: 'https://picsum.photos/600/400?random=14',
+        image: '/images/prod_fpv_15inch.jpg',
         specs: ['轴距: 800mm', '续航: 20min', '载重: 6kg']
       },
     ]
@@ -57,19 +57,21 @@ export const DRONE_CATEGORIES: Category[] = [
     id: 'multi-rotor',
     title: '多旋翼',
     subtitle: '行业应用的稳定基石',
-    image: 'https://picsum.photos/800/600?random=2',
+    image: '/images/cat_multi_rotor.jpg',
     items: [
       {
         id: 'tethered-lighting',
         name: '应急系留照明无人机',
         description: '24小时不间断高空照明，适用于应急救援、夜间施工。',
         longDescription: '大功率空中照明解决方案，20万流明亮度。配备专用地面电源箱实现无限续航，包含系留线缆与智能收放系统，专为应急救援与夜间作业设计。',
-        image: 'https://picsum.photos/600/400?random=20',
+        image: '/images/prod_tethered.jpg',
+        video: '/videos/prod_tethered_demo.mp4',
+        pdfUrl: '/pdf/prod_tethered_specs.pdf',
         specs: ['照明亮度: 200,000lm', '驻空时间: 无限', '抗风等级: ≤12m/s'],
         gallery: [
-             'https://picsum.photos/600/400?random=21',
-             'https://picsum.photos/600/400?random=22',
-             'https://picsum.photos/600/400?random=23'
+             '/images/prod_tethered_1.jpg',
+             '/images/prod_tethered_2.jpg',
+             '/images/prod_tethered_3.jpg'
         ],
         highlights: [
             { label: '最大亮度', value: '200,000', unit: 'lm', icon: 'Sun' },
@@ -163,19 +165,21 @@ export const DRONE_CATEGORIES: Category[] = [
     id: 'fixed-wing',
     title: '固定翼',
     subtitle: '长航时巡检与打击专家',
-    image: 'https://picsum.photos/800/600?random=3',
+    image: '/images/cat_fixed_wing.jpg',
     items: [
       {
         id: 'loitering-munition-x1',
         name: '巡飞弹-X1',
         description: '察打一体，高精度打击，单兵便携智能巡飞系统。',
         longDescription: 'X1型巡飞弹是专为单兵及班组战术设计的察打一体化系统。采用先进的折叠翼气动布局，发射后迅速展开，具备长航时侦察与即时打击能力。内置高性能AI芯片，支持自主目标识别与跟踪，配备多模导引头，确保在复杂电磁环境下仍能精准命中目标。',
-        image: 'https://picsum.photos/600/400?random=55',
+        image: '/images/prod_loitering_x1.jpg',
+        video: '/videos/prod_loitering_x1_demo.mp4',
+        pdfUrl: '/pdf/prod_loitering_x1_specs.pdf',
         specs: ['续航: 40min', '作战半径: 15km', '最大航速: 150km/h'],
         gallery: [
-             'https://picsum.photos/600/400?random=56',
-             'https://picsum.photos/600/400?random=57',
-             'https://picsum.photos/600/400?random=58'
+             '/images/prod_loitering_x1_1.jpg',
+             '/images/prod_loitering_x1_2.jpg',
+             '/images/prod_loitering_x1_3.jpg'
         ],
         highlights: [
             { label: '作战半径', value: '15', unit: 'km', icon: 'Radio' },
@@ -227,13 +231,13 @@ export const DRONE_CATEGORIES: Category[] = [
     id: 'vtol',
     title: '垂起固定翼',
     subtitle: '垂直起降，巡航千里',
-    image: 'https://picsum.photos/800/600?random=4',
+    image: '/images/cat_vtol.jpg',
     items: [
       {
         id: 'jade-rabbit',
         name: '玉兔 (Jade Rabbit)',
         description: '新一代复合翼垂起无人机，灵活部署，全域到达。',
-        image: 'https://picsum.photos/600/400?random=30',
+        image: '/images/prod_jade_rabbit.jpg',
         specs: ['翼展: 2.4m', '巡航速度: 90km/h', '任务载荷: 多光谱/激光雷达']
       }
     ]

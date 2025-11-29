@@ -18,9 +18,12 @@ export const LeasingPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <img 
-              src="https://picsum.photos/800/600?random=50" 
+              src="/images/leasing_service.jpg"
               alt="Team operating drone" 
               className="rounded-lg shadow-2xl border border-slate-800"
+              onError={(e) => {
+                 (e.target as HTMLImageElement).src = 'https://picsum.photos/800/600?random=50';
+              }}
             />
           </div>
           <div>

@@ -8,6 +8,7 @@ export interface ProductItem {
   // New fields for PDP
   gallery?: string[];
   video?: string;
+  pdfUrl?: string; // Link to local PDF file in public/pdf/
   highlights?: {
     label: string;
     value: string;

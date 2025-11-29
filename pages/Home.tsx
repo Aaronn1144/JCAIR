@@ -4,8 +4,8 @@ import { ArrowRight, Box, Settings, Zap } from 'lucide-react';
 import { Button } from '../components/Button';
 import { DRONE_CATEGORIES, COMPANY_TAGLINE } from '../constants';
 
-// CONSTANT FOR HOME BACKGROUND IMAGE - Easily changeable
-const HERO_BG_IMAGE = "https://picsum.photos/1920/1080?random=99";
+// CONSTANT FOR HOME BACKGROUND IMAGE - Updated to local path
+const HERO_BG_IMAGE = "/images/home_hero.jpg";
 
 export const Home: React.FC = () => {
   const scrollToProducts = () => {
@@ -26,6 +26,10 @@ export const Home: React.FC = () => {
             src={HERO_BG_IMAGE} 
             alt="Drone Hero" 
             className="w-full h-full object-cover opacity-60"
+            onError={(e) => {
+              // Fallback if image not found during dev
+              (e.target as HTMLImageElement).src = 'https://picsum.photos/1920/1080?random=99';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-aviation-900/40 via-aviation-900/60 to-aviation-900"></div>
         </div>
@@ -67,6 +71,9 @@ export const Home: React.FC = () => {
                     src={category.image} 
                     alt={category.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50"
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).src = `https://picsum.photos/800/600?random=${category.id.length}`;
+                    }}
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent p-8 flex flex-col justify-end">

@@ -25,6 +25,7 @@ const getIcon = (iconName?: string) => {
 export const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<ProductItem | null>(null);
+  const [activeImage, setActiveImage] = useState<string>('');
 
   useEffect(() => {
     // Find product in categories
@@ -32,6 +33,7 @@ export const ProductPage: React.FC = () => {
       const item = cat.items.find(i => i.id === id);
       if (item) {
         setProduct(item);
+        setActiveImage(item.image);
         break;
       }
     }
@@ -40,8 +42,19 @@ export const ProductPage: React.FC = () => {
 
   const handleDownloadPdf = () => {
     if (!product) return;
+
+    // Use specific PDF file if available
+    if (product.pdfUrl) {
+        const link = document.createElement('a');
+        link.href = product.pdfUrl;
+        link.download = product.pdfUrl.split('/').pop() || `${product.id}_specs.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return;
+    }
     
-    // Create a dummy PDF text content
+    // Fallback: Create a dummy PDF text content
     const content = `
     JINCHENG AVIATION - PRODUCT SPECIFICATION SHEET
     ------------------------------------------------
@@ -62,14 +75,10 @@ export const ProductPage: React.FC = () => {
     Address: ${COMPANY_ADDRESS}
     `;
 
-    // Saving as .txt to ensure it downloads without complex PDF generation libraries, 
-    // but the content is structured.
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    // We name it .txt so it opens correctly in text editors, 
-    // but the user can treat it as their "spec sheet".
     a.download = `${product.id}_specs.txt`; 
     
     document.body.appendChild(a);
@@ -104,30 +113,38 @@ export const ProductPage: React.FC = () => {
           <div className="space-y-4">
             {/* Main Video/Image Display */}
             <div className="relative aspect-video bg-black rounded-lg overflow-hidden border border-slate-800 shadow-2xl group">
-               {/* Simulating a video player */}
-               <img src={product.image} alt={product.name} className="w-full h-full object-cover opacity-80" />
-               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform hover:bg-aviation-accent/80 group-hover:bg-aviation-accent">
-                    <Play className="h-6 w-6 text-white ml-1" fill="white" />
-                 </div>
-               </div>
-               <div className="absolute bottom-4 left-4 bg-black/60 px-2 py-1 text-xs text-white rounded font-mono">
-                  00:12:14 / 20万流明测试
-               </div>
+               {product.video ? (
+                 <video 
+                   controls 
+                   className="w-full h-full object-cover"
+                   poster={product.image}
+                 >
+                   <source src={product.video} type="video/mp4" />
+                   您的浏览器不支持视频播放。
+                 </video>
+               ) : (
+                 <>
+                   <img src={activeImage || product.image} alt={product.name} className="w-full h-full object-cover" />
+                   {/* Optional: Add a 'No Video' placeholder or just show image */}
+                   <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/50 to-transparent"></div>
+                 </>
+               )}
             </div>
             
             {/* Thumbnails */}
             <div className="grid grid-cols-4 gap-4">
                {product.gallery?.map((img, idx) => (
-                  <div key={idx} className={`aspect-video rounded border ${idx === 0 ? 'border-aviation-accent' : 'border-slate-800'} overflow-hidden cursor-pointer hover:opacity-80`}>
+                  <div 
+                    key={idx} 
+                    className={`aspect-video rounded border ${activeImage === img ? 'border-aviation-accent' : 'border-slate-800'} overflow-hidden cursor-pointer hover:opacity-80 transition-all`}
+                    onClick={() => setActiveImage(img)}
+                  >
                       <img src={img} alt="thumb" className="w-full h-full object-cover" />
                   </div>
                ))}
                {!product.gallery && (
                  <>
                     <div className="aspect-video bg-slate-800 rounded border border-aviation-accent overflow-hidden"><img src={product.image} className="w-full h-full object-cover" /></div>
-                    <div className="aspect-video bg-slate-800 rounded border border-slate-700"></div>
-                    <div className="aspect-video bg-slate-800 rounded border border-slate-700"></div>
                     <div className="aspect-video bg-slate-800 rounded border border-slate-700"></div>
                  </>
                )}
@@ -142,7 +159,7 @@ export const ProductPage: React.FC = () => {
              </div>
              
              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{product.name}</h1>
-             <p className="text-xl text-slate-500 font-light mb-6">Emergency Tethered Lighting Drone</p>
+             <p className="text-xl text-slate-500 font-light mb-6">High Performance Aviation System</p>
              
              <p className="text-slate-300 leading-relaxed mb-8">
                {product.longDescription || product.description}
