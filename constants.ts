@@ -32,22 +32,22 @@ export const DRONE_CATEGORIES: Category[] = [
       },
       { 
         id: '11-inch-fpv', 
-        name: '11寸 FPV 电影机', 
-        description: '专业影视航拍，搭载大型摄影机。',
+        name: '11寸 FPV ', 
+        description: '专业尺寸，任意搭载。',
         image: '/images/prod_fpv_11inch.jpg',
         specs: ['轴距: 500mm', '续航: 12min', '载重: 2.5kg']
       },
       { 
         id: '13-inch-fpv', 
-        name: '13寸 FPV 重载机', 
-        description: '工业级重载穿越机，适应极端环境。',
+        name: '13寸 FPV 重机', 
+        description: '工业级穿越机，适应极端环境。',
         image: '/images/prod_fpv_13inch.jpg',
         specs: ['轴距: 650mm', '续航: 15min', '载重: 4kg']
       },
       { 
         id: '15-inch-fpv', 
         name: '15寸 FPV 巨兽', 
-        description: '超大载重，极限物流运输解决方案。',
+        description: '超大载重，极限解决方案。',
         image: '/images/prod_fpv_15inch.jpg',
         specs: ['轴距: 800mm', '续航: 20min', '载重: 6kg']
       },
